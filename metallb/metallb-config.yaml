@@ -1,0 +1,19 @@
+# metallb-config.yaml
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: example-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 172.18.0.200 - 172.18.0.250 # <-- Use an appropriate range from your Docker subnet
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: example-advertisement
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - example-pool
+
